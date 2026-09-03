@@ -192,13 +192,6 @@ textarea{
   flex-shrink:0;
 }
 
-/*
-   HEADER LOGO IMAGE
-
-   Keeps the complete logo visible inside
-   the header layer without stretching.
-*/
-
 .brand img{
   display:block;
 
@@ -1196,6 +1189,7 @@ textarea{
 
 /* =====================================================
    GALLERY
+   FIXED VERSION
 ===================================================== */
 
 .gallery{
@@ -1228,11 +1222,9 @@ textarea{
 
   isolation:isolate;
 
-  display:flex;
+  display:block;
 
-  align-items:center;
-
-  justify-content:center;
+  padding:0;
 }
 
 .gallery-item img{
@@ -1240,10 +1232,17 @@ textarea{
 
   inset:0;
 
+  display:block;
+
   width:100%;
   height:100%;
 
-  object-fit:contain;
+  /*
+     IMPORTANT:
+     "cover" fills the entire square frame.
+     It removes the empty spaces caused by "contain".
+  */
+  object-fit:cover;
 
   object-position:center;
 
@@ -1273,7 +1272,7 @@ textarea{
 }
 
 .gallery-item:hover img{
-  transform:scale(1.02);
+  transform:scale(1.04);
 }
 
 .gallery-placeholder{
@@ -1294,7 +1293,7 @@ textarea{
 
   letter-spacing:1px;
 
-  z-index:1;
+  z-index:3;
 }
 
 .gallery-item.empty-image .gallery-placeholder{
@@ -1676,14 +1675,6 @@ textarea{
   flex-shrink:0;
 }
 
-
-/*
-   FOOTER LOGO IMAGE
-
-   Keeps the complete logo visible and prevents
-   oversized images from breaking the footer layer.
-*/
-
 .footer-brand img{
   display:block;
 
@@ -1970,6 +1961,18 @@ textarea:focus-visible{
     gap:15px;
   }
 
+  .gallery-item{
+    aspect-ratio:1 / 1;
+  }
+
+  .gallery-item img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+  }
+
 
   /* IMAGE */
 
@@ -2203,7 +2206,14 @@ textarea:focus-visible{
   }
 
   .gallery-item img{
-    object-fit:contain;
+    width:100%;
+    height:100%;
+
+    /*
+       KEEP COVER ON MOBILE.
+       This prevents empty spaces on phones.
+    */
+    object-fit:cover;
 
     object-position:center;
   }
@@ -2427,6 +2437,15 @@ textarea:focus-visible{
     aspect-ratio:1 / 1;
 
     border-radius:8px;
+  }
+
+  .gallery-item img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    object-position:center;
   }
 
 
